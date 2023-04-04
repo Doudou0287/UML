@@ -2,6 +2,7 @@
 
 class Vehicle {
     private $registerNumber;
+    
     private $technicians;
 
     public function __construct($registerNumber) {
@@ -19,7 +20,6 @@ class Vehicle {
 
     public function addTechnician($technician) {
         array_push($this->technicians, $technician);
-        $technician->addVehicle($this);
     }
 
     public function getTechnicians() {
@@ -53,29 +53,33 @@ class Technician {
     }
 }
 
-
-
-// Create the first vehicle instance
+// Create instances of the Vehicle class
 $vA = new Vehicle('A');
-var_dump($vA);
-
-// Create the second vehicle instance
 $vB = new Vehicle('B');
-var_dump($vB);
+$vC = new Vehicle('C');
 
-// Create three technician instances with different names
-$paul = new Technician('paul');
-$juliette = new Technician('juliette');
-$jalila = new Technician('jalila');
+// Create instances of the Technician class
+$juliette = new Technician('Juliette');
+$jalila = new Technician('Jalila');
+$paul = new Technician('Paul');
 
-// Create two vehicle instances
-$vA = new Vehicle('A', [$juliette, $paul]);
-$vB = new Vehicle('B', [$jalila]);
+// Assign technicians to vehicles
+$vA->addTechnician($juliette);
+$vB->addTechnician($jalila);
+$vB->addTechnician($juliette);
+$vC->addTechnician($paul);
+
+// Assign vehicles to technicians
+$juliette->addVehicle($vA);
+$juliette->addVehicle($vB);
+$jalila->addVehicle($vB);
+$paul->addVehicle($vC);
+
 var_dump($vA);
 var_dump($vB);
-
-$vB->addTechnician($paul);
-var_dump($vA);
-var_dump($vB);
+var_dump($vC);
+var_dump($paul);
+// var_dump($jalila);
+// var_dump($juliette);
 
 ?>
