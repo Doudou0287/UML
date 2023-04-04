@@ -1,0 +1,13 @@
+@startuml
+
+class Emplye {
+    id : Integer
+    emplyeNum : Integer
+
+}
+
+class Flight {
+   flightNumber : Integer
+   departureTime : Date
+}
+@enduml
